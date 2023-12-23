@@ -1,21 +1,20 @@
 package com.driver.services.impl;
 
+import java.util.List;
+
+import com.driver.services.AdminService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.driver.model.Admin;
 import com.driver.model.Customer;
 import com.driver.model.Driver;
 import com.driver.repository.AdminRepository;
 import com.driver.repository.CustomerRepository;
 import com.driver.repository.DriverRepository;
-import com.driver.services.AdminService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AdminServiceImpl implements AdminService {
-
 
 	@Autowired
 	AdminRepository adminRepository1;
@@ -35,10 +34,12 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public Admin updatePassword(Integer adminId, String password) {
 		//Update the password of admin with given id
-        Admin admin = adminRepository1.findById(adminId)
-                .orElseThrow(() -> new RuntimeException("\"Admin not found with ID: \" + adminId"));
-        admin.setPassword(password);
-        return adminRepository1.save(admin);
+		Admin admin = adminRepository1.findById(adminId).get();
+		admin.setPassword(password);
+		adminRepository1.save(admin);
+
+		return admin;
+
 	}
 
 	@Override
@@ -57,7 +58,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<Customer> getListOfCustomers() {
 		//Find the list of all customers
-        return customerRepository1.findAll();
+		return customerRepository1.findAll();
 	}
 
 }

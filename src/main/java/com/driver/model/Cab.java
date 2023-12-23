@@ -8,7 +8,7 @@ public class Cab {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    int Id;
     int perKmRate;
     boolean available;
     @OneToOne
@@ -18,19 +18,12 @@ public class Cab {
     public Cab() {
     }
 
-    public Cab(int id, int perKmRate, boolean available, Driver driver) {
-        this.id = id;
-        this.perKmRate = perKmRate;
-        this.available = available;
-        this.driver = driver;
-    }
-
     public int getId() {
-        return id;
+        return Id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        Id = id;
     }
 
     public int getPerKmRate() {
@@ -41,6 +34,9 @@ public class Cab {
         this.perKmRate = perKmRate;
     }
 
+    public boolean getAvailable() {
+        return available;
+    }
 
     public void setAvailable(boolean available) {
         this.available = available;
@@ -52,19 +48,5 @@ public class Cab {
 
     public void setDriver(Driver driver) {
         this.driver = driver;
-    }
-
-    public boolean getAvailable() {
-        return available;
-    }
-
-    @Override
-    public String toString() {
-        return "Cab{" +
-                "id=" + id +
-                ", perKmRate=" + perKmRate +
-                ", available=" + available +
-                ", driver=" + driver +
-                '}';
     }
 }

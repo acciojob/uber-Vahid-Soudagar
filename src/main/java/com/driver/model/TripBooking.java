@@ -3,38 +3,45 @@ package com.driver.model;
 import javax.persistence.*;
 
 @Entity
-public class TripBooking {
-
+@Table(name = "TripBooking")
+public class TripBooking{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int tripBookingId;
+
     String fromLocation;
+
     String toLocation;
+
     int distanceInKm;
+
     TripStatus status;
+
     int bill;
+
+
     @ManyToOne
     @JoinColumn
     Customer customer;
 
-    //For mapping to driver(parent)
     @ManyToOne
     @JoinColumn
     Driver driver;
+
     public TripBooking() {
+
     }
 
-    public TripBooking(int tripBookingId, String fromLocation, String toLocation, int distanceInKm, TripStatus status, int bill, Driver driver, Customer customer) {
+    public TripBooking(int tripBookingId, String fromLocation, String toLocation, int distanceInKm, TripStatus status, int bill, Customer customer, Driver driver) {
         this.tripBookingId = tripBookingId;
         this.fromLocation = fromLocation;
         this.toLocation = toLocation;
         this.distanceInKm = distanceInKm;
         this.status = status;
         this.bill = bill;
-        this.driver = driver;
         this.customer = customer;
+        this.driver = driver;
     }
-
 
     public int getTripBookingId() {
         return tripBookingId;
@@ -84,14 +91,6 @@ public class TripBooking {
         this.bill = bill;
     }
 
-    public Driver getDriver() {
-        return driver;
-    }
-
-    public void setDriver(Driver driver) {
-        this.driver = driver;
-    }
-
     public Customer getCustomer() {
         return customer;
     }
@@ -100,15 +99,11 @@ public class TripBooking {
         this.customer = customer;
     }
 
-    @Override
-    public String toString() {
-        return "TripBooking{" +
-                "tripBookingId=" + tripBookingId +
-                ", fromLocation='" + fromLocation + '\'' +
-                ", toLocation='" + toLocation + '\'' +
-                ", distanceInKm=" + distanceInKm +
-                ", status=" + status +
-                ", bill=" + bill +
-                '}';
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
     }
 }

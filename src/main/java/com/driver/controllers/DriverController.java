@@ -13,21 +13,21 @@ import org.springframework.web.bind.annotation.*;
 public class DriverController {
 
 	@Autowired
-	DriverServiceImpl driverService;
+	DriverServiceImpl driverServiceImpl;
 
 	@PostMapping(value = "/register")
 	public ResponseEntity<Void> registerDriver(@RequestParam String mobile, @RequestParam String password){
-		driverService.register(mobile, password);
+		driverServiceImpl.register(mobile,password);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@DeleteMapping(value = "/delete")
 	public void deleteDriver(@RequestParam Integer driverId){
-		driverService.removeDriver(driverId);
+		driverServiceImpl.removeDriver(driverId);
 	}
 
 	@PutMapping("/status")
 	public void updateStatus(@RequestParam Integer driverId){
-		driverService.updateStatus(driverId);
+		driverServiceImpl.updateStatus(driverId);
 	}
 }

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 
 @RestController
@@ -16,32 +17,32 @@ import java.util.List;
 public class AdminController {
 
 	@Autowired
-	AdminServiceImpl adminService;
+	AdminServiceImpl adminServiceImpl;
 
 	@PostMapping("/register")
 	public ResponseEntity<Void> registerAdmin(@RequestBody Admin admin){
-		adminService.adminRegister(admin);
+		adminServiceImpl.adminRegister(admin);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@PutMapping("/update")
 	public ResponseEntity<Admin> updateAdminPassword(@RequestParam Integer adminId, @RequestParam String password){
-		Admin updatedAdmin = adminService.updatePassword(adminId, password);
+		Admin updatedAdmin = adminServiceImpl.updatePassword(adminId,password);
 		return new ResponseEntity<>(updatedAdmin, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/delete")
 	public void deleteAdmin(@RequestParam Integer adminId){
-		adminService.deleteAdmin(adminId);
+		adminServiceImpl.deleteAdmin(adminId);
 	}
 
 	@GetMapping("/listOfCustomers")
 	public List<Customer> listOfCustomers() {
-		return adminService.getListOfCustomers();
+		return adminServiceImpl.getListOfCustomers();
 	}
 
 	@GetMapping("/listOfDrivers")
 	public List<Driver> listOfDrivers() {
-		return adminService.getListOfDrivers();
+		return adminServiceImpl.getListOfDrivers();
 	}
 }
