@@ -2,6 +2,7 @@ package com.driver.test;
 
 import com.driver.model.*;
 import com.driver.repository.*;
+import com.driver.services.AdminService;
 import com.driver.services.impl.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,5 +24,17 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TestCases {
+
+    @Mock
+    AdminRepository adminRepository1;
+    @InjectMocks
+    AdminServiceImpl adminService;
+
+    @Test
+    public void createAdmin() {
+        adminService = new AdminServiceImpl();
+        Admin admin = new Admin(1, "vahid", "90041");
+        adminService.adminRegister(admin);
+    }
 }
 
