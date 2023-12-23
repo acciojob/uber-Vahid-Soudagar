@@ -41,9 +41,6 @@ public class Cab {
         this.perKmRate = perKmRate;
     }
 
-    public boolean isAvailable() {
-        return available;
-    }
 
     public void setAvailable(boolean available) {
         this.available = available;
@@ -55,6 +52,10 @@ public class Cab {
 
     public void setDriver(Driver driver) {
         this.driver = driver;
+    }
+
+    public boolean getAvailable() {
+        return available;
     }
 
     @Override
